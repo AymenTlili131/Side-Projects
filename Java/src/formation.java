@@ -23,6 +23,7 @@ public formation(String nom, float durée, float prix,Matiére M)  throws Unique_n
 		this.prix = prix;
 		this.Mat_inclue.add(M);}
 	}
+
 /*public formation(String nom, float durée, float prix,String M)  throws Unique_name_Exception*/
 /*une formation doit avoir au moins une matiére qui sera insére lors de sa déclaraion*/
 	/*{	this.nom=null;

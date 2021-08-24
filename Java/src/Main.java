@@ -41,30 +41,30 @@ public class Main
 		
 		//Q1
 				/*observation initiale (la méthode put du hashmap 
-				 * donne un affichage supplémentaire)
+				 * donne un affichage supplémentaire)*/
 				C.Consulter_forma();
-				C.Consulter_Mat();*/
+				C.Consulter_Mat();
 				
-				/*test suppression formation
+				/*test suppression formation*/
 				C.supprimer_forma(GDev); 
 				C.Consulter_forma();
 				C.ajouter_forma(GDev);
-				C.Consulter_forma();*/
+				C.Consulter_forma();
 				
-				/*test suppression matiére
+				/*test suppression matiére*/
 				C.supp_Mat_forma(Algorithmique, GDev);
 				C.Consulter_Mat();
 				GDev.aj_Mat_forma(Algorithmique, GDev);
-				C.Consulter_Mat();	*/
+				C.Consulter_Mat();	
 				
 				//Q2
-				/*System.out.println(C.Recherche_forma("Physiques Quantiques", 40f).getNom());*/
+				System.out.println(C.Recherche_forma("Physiques Quantiques", 40f).getNom());
 				
 				//Q3
-				/*System.out.println(C.Recherche_participant(14314228));*/
+				System.out.println(C.Recherche_participant(14314228));
 				
 				//Q4
-				/*A.fill_Bulletin();
+				A.fill_Bulletin();
 				A.afficher_bulletin();
 				System.out.print(A.calculer_moy());
 				
@@ -82,20 +82,20 @@ public class Main
 				
 				E.fill_Bulletin();
 				E.afficher_bulletin();
-				System.out.print(E.calculer_moy());*/
+				System.out.print(E.calculer_moy());
 				
 					 
-				//Q5
-				/*C.afficher_p(Phy_q);*/
+				/*Q5*/
+				C.afficher_p(Phy_q);
 				
 				//Q6 , il est recommendé d'executer Q4 pour des résultats significatfs
-				/*C.afficher_p_detail(Phy_q);*/ 
+				C.afficher_p_detail(Phy_q);
 				
 				//Q7
-				/*System.out.println(C.recette());
-				System.out.println(C.bénifice_f(GDev));
-				System.out.println(C.bénifice_f(Phy_q));
-				System.out.println(C.bénifice());*/
+				System.out.println("La recette du centre de formation est" +C.recette());
+				System.out.println("bénifice de la formation 1" +C.bénifice_f(GDev));
+				System.out.println("bénifice de la formation 2" +C.bénifice_f(Phy_q));
+				System.out.println("le bénifice du centre de formation est :" +C.bénifice());
 
-		JFrame frame = new swing1();
+		JFrame frame = new swing1(C);
 }}

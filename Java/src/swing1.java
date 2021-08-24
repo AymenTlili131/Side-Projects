@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 	public class swing1 extends JFrame {
 
-		public swing1() {
+		public swing1(Centre_formation C) {
 
 		     super("Gestion des Cours");
 
@@ -24,7 +25,7 @@ import java.awt.event.*;
 		     ImageIcon icone3=new ImageIcon(url3);
 		     
 		     JButton bouton = new JButton("Formation",icone1);
-		     JButton bouton1 = new JButton("MatiÃ©re",icone2);
+		     JButton bouton1 = new JButton("Matiére",icone2);
 		     JButton bouton2 = new JButton("Participant",icone3);
 		     JPanel panneau = new JPanel();
 		     panneau.add(bouton);
@@ -38,7 +39,7 @@ import java.awt.event.*;
 		     /*contentPane.remove(oldPanel);
 			 contentPane.add(newPanel);*/
 		     JPanel p_forma = new JPanel();
-		     JButton bouton_f0 = new JButton("Ajouter une Formation"); /*ajouter formation Ã  un centre*/
+		     JButton bouton_f0 = new JButton("Ajouter une Formation"); /*ajouter formation à un centre*/
 		     JButton bouton_f1 = new JButton("Selectionner une formation");
 		     p_forma.add(bouton_f1);p_forma.add(bouton_f0);
 		     
@@ -50,8 +51,8 @@ import java.awt.event.*;
 		     JPanel Modifier_f = new JPanel();
 		     JButton bouton_fm0 = new JButton("Modifier le nom"); /*Modifier nom*/  /*Modifier prix*/
 		     JButton bouton_fm1 = new JButton("Modifier le prix"); 
-		     JButton bouton_fm2 = new JButton("Modifier la durÃ©e"); /*modifier duree*/
-		     JButton bouton_fm3 = new JButton("Modifier MatiÃ©res");
+		     JButton bouton_fm2 = new JButton("Modifier la durée"); /*modifier duree*/
+		     JButton bouton_fm3 = new JButton("Modifier Matiéres");
 		     
 		     bouton_f0.setPreferredSize(bouton_f1.getPreferredSize());
 		     
@@ -100,20 +101,23 @@ import java.awt.event.*;
 		                	 JFrame f = new JFrame("Ajout d'une formation");
 		                	    f.setSize(500, 200);
 		                	    JPanel pannel = new JPanel();
-
 		                	    JTextField  testField1 = new JTextField ("nom formation");
 		                	    String nom = testField1.getText();
 		                	    JTextField  testField2 = new JTextField ("duree formation");
 		                	    float duree =Float.parseFloat(testField2.getText()) ;
 		                	    JTextField  testField3 = new JTextField ("prix formation");
 		                	    float prix =Float.parseFloat(testField2.getText()) ;
-		                	    JTextField  testField4 = new JTextField ("MatiÃ©re initiale");
-		                	    String MatiÃ©re = testField1.getText();
-		                	   /* formation R = new formation(nom,duree,prix,MatiÃ©re);*/
+		                	    JTextField  testField4 = new JTextField ("Matiére initiale");
+		                	    String Matiére = testField1.getText();
+		                	   
+		                	    /*formation R = new formation(nom,duree,prix,Matiére);*/
+		                	    
+		                	    C.ajouter_forma(R);
 		                	    pannel.add(testField1);pannel.add(testField2);
 		                	    pannel.add(testField3);pannel.add(testField4);
 		                	    f.getContentPane().add(pannel);
 		                	    f.setVisible(true);
+		            
 		                	 /*textArea = new JTextArea("nom formation",5, 20);
 		                	 JScrollPane scrollPane = new JScrollPane(textArea); 
 		                	 textArea.setEditable(false); */
@@ -140,7 +144,18 @@ import java.awt.event.*;
 		             if (!bouton_f1.getModel().isPressed()) {
 		                 {/*drop down menu to select*/
 		                	 
-		                	 
+		                	    JLabel lbl = new JLabel("Selectionner une formation à gérer");
+		                	    lbl.setVisible(true);
+
+		                	    panneau.add(lbl);
+
+		                	    ArrayList<formation> choices = C.Liste_formations ;
+
+		                	    final JComboBox<ArrayList<formation>> cb = new JComboBox<ArrayList<formation>>();
+
+		                	    cb.setVisible(true);
+		                	    panneau.add(cb);
+		                	    formation R = (formation)cb.getSelectedItem();                			  
 		                	 setContentPane(Action_f);
 		        		     setSize(500,200);
 		        		     setVisible(true);
@@ -183,6 +198,7 @@ import java.awt.event.*;
 		     });
 		     /*peanneau ,
 		      * p_forma,Action_f,Modifier_f */ 
-		     JPanel p_matiÃ©re = new JPanel();
+		     JPanel p_matiére = new JPanel();
 		     JPanel p_participant = new JPanel();
-	}}	     
+		     
+}}

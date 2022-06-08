@@ -1,0 +1,31 @@
+
+public class Complexe extends Affichage implements Operation 
+{
+double im,re;
+public Complexe (double a,double b)
+{
+	this.re=a;
+	this.im=b;}
+@Override
+public Object plus(Object obj) {
+	return (this.re+(Complexe)obj.re)+'i'+(this.im+(Complexe)obj.im);
+}
+@Override
+public Object moins(Object obj) {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+String affiche() {
+	// TODO Auto-generated method stub
+	return null;
+}
+}
+/*public Object plus(Object obj)
+{	obj=(Complexe)obj;
+	this.im=this.im+obj.im;
+	this.re=this.re+obj.re;}
+public Object moins(Object obj)
+{		obj=(Complexe)obj;
+		this.im=this.im-obj.im;
+		this.re=this.re-obj.re;*/

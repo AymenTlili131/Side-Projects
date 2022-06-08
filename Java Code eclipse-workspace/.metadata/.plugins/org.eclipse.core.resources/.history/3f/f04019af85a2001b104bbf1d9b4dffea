@@ -1,0 +1,28 @@
+
+public class Reel extends Affichage implements Operation 
+{
+double x;
+public Reel(double a)
+{this.x=a;}
+/*public Object plus(Object obj)
+{	obj=(Reel)obj;
+	this.x=this.x+obj.x;}
+public Object moins(Object obj)
+{	obj=(Reel)obj;
+	this.x=this.x-obj.x;}*/
+@Override
+public Object plus(Object obj) {
+	
+	return this.x+(double)obj;
+}
+@Override
+public Object moins(Object obj) {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+String affiche() {
+	// TODO Auto-generated method stub
+	return null;
+}
+}

@@ -1,0 +1,25 @@
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class CV {
+	
+	
+	
+	CV MettreAj(CV p) throws SQLException 
+	{			
+				PreparedStatement ps=Connexion.getConnection().prepareStatement("insert into Etudiant values(?,?,?,"+this.F+",?)");				
+				try {
+				ps.setInt(1,p.getCin());
+				ps.setString(2,p.getNom());
+				ps.setString(3,p.getPrénom());
+				ps.setFloat(5,p.getMoyenne());
+				ps.executeQuery();  
+				}
+				catch (Exception e)
+				{e.printStackTrace();	
+				}
+				ps.close();
+				return p;
+	}
+
+}

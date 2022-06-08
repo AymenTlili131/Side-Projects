@@ -1,0 +1,19 @@
+
+public class Racine throws ExceptionValeurNégative
+{
+float opérande
+public Racine (float a,float opérande)
+{this.precision=a;this.opérande=opérande;}
+float precision;
+
+
+public float getPrecision() {
+	return precision;
+}
+public void setPrecision(float precision) 
+{this.precision = precision;}
+
+	
+}
+
+}

@@ -1,0 +1,67 @@
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class CV {
+	String Nom;
+	String Prénom ;
+	String Poste ;
+	ArrayList<compétence> L_compétences =new ArrayList<compétence>();
+	ArrayList<projets> L_Projets =new ArrayList<projets>();
+	ArrayList<Stage> L_Stage =new ArrayList<Stage>();
+	ArrayList<loisir> L_loisir =new ArrayList<loisir>();
+	
+	
+	public CV(String nom, String prénom, String poste) {
+		super();
+		Nom = nom;
+		Prénom = prénom;
+		Poste = poste;
+	}
+	
+	void ajouterCompétence(compétence c)
+	{
+		L_compétences.add(c);
+	}
+	void retirerCompétence(compétence c)
+	{
+		L_compétences.remove(c);
+	}
+	
+	void ajouterProjet(projets p)
+	{
+		L_Projets.add(p);
+	}
+	void retirerProjet(projets p)
+	{
+		L_Projets.remove(p);
+	}
+	
+	void ajouterStage(Stage s)
+	{
+		L_Stage.add(s);
+	}
+	void retirerStage(Stage s)
+	{
+		L_Stage.remove(s);
+	}
+	
+	CV MettreAj(CV p) throws SQLException 
+	{			
+				PreparedStatement ps=Connexion.getConnection().prepareStatement("insert into Etudiant values(?,?,?,"+this.F+",?)");				
+				try {
+				ps.setInt(1,p.getCin());
+				ps.setString(2,p.getNom());
+				ps.setString(3,p.getPrénom());
+				ps.setFloat(5,p.getMoyenne());
+				ps.executeQuery();  
+				}
+				catch (Exception e)
+				{e.printStackTrace();	
+				}
+				ps.close();
+				return p;
+	}
+
+}

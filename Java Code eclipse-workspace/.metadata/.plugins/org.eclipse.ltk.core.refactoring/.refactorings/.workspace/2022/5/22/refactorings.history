@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;TP 1 programmation paralléle&apos; to &apos;TP programmation paralléle&apos;" description="Rename resource &apos;TP 1 programmation paralléle&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/TP 1 programmation paralléle" name="TP programmation paralléle" stamp="1653576502065" updateReferences="true"/>
+</session>

@@ -1,0 +1,6 @@
+
+public class compétence {
+	String Nom;
+	int MoisExperience;
+	String valeur;
+}

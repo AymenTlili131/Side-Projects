@@ -1,0 +1,356 @@
+-----------------Habitant----------
+public class Habitant {
+String Nom;
+int cin ;
+Commune résidence;
+boolean est_président=false;
+public Habitant(String nom, int cin, Commune résidence) 
+{
+	Nom = nom;
+	this.cin = cin;
+	this.résidence = résidence;
+}
+public String getNom() {
+	return Nom;
+}
+public void setNom(String nom) {
+	Nom = nom;
+}
+public int getCin() {
+	return cin;
+}
+public void setCin(int cin) {
+	this.cin = cin;
+}
+public Commune getRésidence() {
+	return résidence.nom;
+}
+public void setRésidence(Commune résidence) {
+	this.résidence = résidence;
+}
+void changer_résidence_C(Commune c)
+{ 	if (c!=null)
+	this.résidence.retirer_H_C(this);
+	this.résidence=c;
+	c.ajouter_H_C(this);
+	}
+void changer_résidence_Ville(Ville V,Commune k)
+{
+	for (Commune c : V.pop_V.keySet())
+	{	
+		if (c==this.résidence)
+		{	c.retirer_H_C(this);
+			this.résidence.V.pop_V.put(c,c.màj_nb_H());
+			
+			this.résidence.V=V;
+			this.changer_résidence_C(k);
+			this.résidence.V.pop_V.put(k,k.màj_nb_H());
+		}
+	}
+
+}
+@Override
+public String toString() {
+	return "Habitant [Nom=" + Nom + ", cin=" + cin + ", résidence=" + résidence + ", est_président=" + est_président
+			+ ", getNom()=" + getNom() + ", getCin()=" + getCin() + ", getRésidence()=" + getRésidence() + "]";
+}
+
+
+
+}
+--------------------Commune------------
+
+import java.util.HashSet;
+
+public class Commune {
+	public Commune nom;
+	int nb_H=0;
+	float  Surface;
+	public float getSurface() {
+		return Surface;
+	}
+
+	public void setSurface(float surface) {
+		Surface = surface;
+	}
+
+	HashSet<Habitant> pop_C = new HashSet<Habitant>();
+	Ville V=null;
+	public Commune(Commune nom, int nb_H, Ville v) 
+	{
+		this.nom = nom;
+		this.nb_H = nb_H;
+		V = v;
+	}
+	
+	void ajouter_H_C(Habitant H)
+	{
+		if (H!=null)
+			pop_C.add(H);
+		H.résidence=this;
+	}
+	void retirer_H_C(Habitant H)
+	{
+		if ((H!=null) & pop_C.contains(H))
+			pop_C.remove(H);
+	}
+	
+	int màj_nb_H() 
+	{
+		return pop_C.size();
+	}
+	
+	Habitant recherche_H(int a) /*par cin*/
+	{Habitant aux=null;
+		for (Habitant h : pop_C)
+		if (h.cin==a)
+			aux=h;
+		return aux;
+	}
+	
+	Habitant recherche_H(String a)/*par nom*/
+	{Habitant aux=null;
+	for (Habitant h : pop_C)
+	if (h.Nom.equals(a))
+		aux=h;
+	return aux;
+	}
+
+	public Commune getNom() {
+		return nom;
+	}
+
+	public void setNom(Commune nom) {
+		this.nom = nom;
+	}
+
+	public int getNb_H() {
+		return nb_H;
+	}
+
+	public void setNb_H(int nb_H) {
+		this.nb_H = nb_H;
+	}
+
+	public HashSet<Habitant> getPop_C() {
+		return pop_C;
+	}
+
+	public void setPop_C(HashSet<Habitant> pop_C) {
+		this.pop_C = pop_C;
+	}
+
+	public Ville getV() {
+		return V;
+	}
+
+	public void setV(Ville v) {
+		V = v;
+	}
+
+	@Override
+	public String toString() {
+		return "Commune [nom=" + nom + ", nb_H=" + nb_H + ", Surface=" + Surface + ", pop_C=" + pop_C + ", V=" + V
+				+ ", getSurface()=" + getSurface() + ", màj_nb_H()=" + màj_nb_H() + ", getNom()=" + getNom()
+				+ ", getNb_H()=" + getNb_H() + ", getPop_C()=" + getPop_C() + ", getV()=" + getV() + "]";
+	}
+	
+	
+}
+-----------------Ville---------------
+import java.util.HashMap;
+
+public class Ville {
+	boolean Capitale =false; 
+	float  Surface;
+	String nom;
+
+
+	int Code_postale;
+	HashMap<Commune,Integer> pop_V= new HashMap<Commune,Integer>();
+	public Ville(String nom, int code_postale) 
+	{
+		this.nom = nom;
+		Code_postale = code_postale;
+	}
+	public boolean isCapitale() {
+		return Capitale;
+	}
+	public void setCapitale(boolean capitale) {
+		Capitale = capitale;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public int getCode_postale() {
+		return Code_postale;
+	}
+	public void setCode_postale(int code_postale) {
+		Code_postale = code_postale;
+	}
+	public HashMap<Commune, Integer> getPop_V() {
+		return pop_V;
+	}
+	public void setPop_V(HashMap<Commune, Integer> pop_V) {
+		this.pop_V = pop_V;
+	}
+	
+	int nb_H()
+	{	int nb_h=0;
+		for (Commune c : pop_V.keySet())
+		{
+			nb_h=nb_h+c.getNb_H();
+		}
+		return nb_h;
+	}
+	
+	Habitant recherche_H(int a) /*par cin*/
+	{Habitant q = null;
+		for (Commune c : pop_V.keySet())
+		{if (c.recherche_H(a)!=null);
+			q=c.recherche_H(a);}
+	return q;
+	}
+	
+	Habitant recherche_H(String a)/*par nom*/
+	{Habitant q = null;
+	for (Commune c : pop_V.keySet())
+	{if (c.recherche_H(a)!=null);
+		q=c.recherche_H(a);}
+return q;
+	}
+	
+	public float getSurface() {
+		return Surface;
+	}
+	public void setSurface(float surface) {
+		for (Commune c : pop_V.keySet())
+			Surface = Surface+c.Surface;
+	}
+	@Override
+	public String toString() {
+		return "Ville [Capitale=" + Capitale + ", Surface=" + Surface + ", nom=" + nom + ", Code_postale="
+				+ Code_postale + ", pop_V=" + pop_V + ", isCapitale()=" + isCapitale() + ", getNom()=" + getNom()
+				+ ", getCode_postale()=" + getCode_postale() + ", getPop_V()=" + getPop_V() + ", nb_H()=" + nb_H()
+				+ ", getSurface()=" + getSurface() + "]";
+	}
+	
+	
+	
+}
+
+---------------Pays-------------------
+
+
+
+import java.util.ArrayList;
+
+public class Pays 
+{	String nom;
+	float  Surface;
+	Habitant Président;
+	int Population=0;
+	boolean en_guerre=false;
+	float reserve_national;
+	ArrayList<Ville> pop_P = new ArrayList<Ville>();
+	Ville return_capitale()
+	{	int max=0;
+		Ville a=null;
+		for (Ville v : pop_P)
+		{
+			if (v.Capitale==true)
+			{	a=v;
+					return v;}
+		else 
+			{
+			if (v.nb_H()>max) /*ville avec plus d'habitant est la capitale*/
+			 {max=v.nb_H();a=v;
+			 }
+			}
+		}
+		for (Ville v : pop_P)
+		{if (v==a)
+			v.Capitale=true;
+		return v;}
+		return a;
+		
+	}
+	public Pays(String nom, Habitant président, boolean en_guerre, float reserve_national) 
+	{
+		this.nom = nom;
+		Président = président;
+		this.en_guerre = en_guerre;
+		this.reserve_national = reserve_national;
+	}
+	
+	void ajouter_V(Ville V)
+	{
+		pop_P.add(V);
+	}
+	void retirer_V(Ville V)
+	{if (en_guerre==true)
+		pop_P.remove(V);
+	}
+	
+	int population()
+	{for( Ville v : pop_P)
+		Population=Population+v.nb_H();
+	return Population;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public float getSurface() {
+		return Surface;
+	}
+	public void setSurface(float surface) {
+		Surface = surface;
+	}
+	public Habitant getPrésident() {
+		return Président;
+	}
+	public void setPrésident(Habitant président) {
+		Président = président;
+	}
+	public int getPopulation() {
+		return Population;
+	}
+	public void setPopulation(int population) {
+		Population = population;
+	}
+	public boolean isEn_guerre() {
+		return en_guerre;
+	}
+	public void setEn_guerre(boolean en_guerre) {
+		this.en_guerre = en_guerre;
+	}
+	public float getReserve_national() {
+		return reserve_national;
+	}
+	public void setReserve_national(float reserve_national) {
+		this.reserve_national = reserve_national;
+	}
+	public float getSurface2() {
+		return Surface;
+	}
+
+	public void setSurface2(float surface) {
+		for (Ville v : pop_P)
+			Surface = Surface+v.getSurface();
+	}
+	@Override
+	public String toString() {
+		return "Pays [nom=" + nom + ", Surface=" + Surface + ", Président=" + Président + ", Population=" + Population
+				+ ", en_guerre=" + en_guerre + ", reserve_national=" + reserve_national + ", pop_P=" + pop_P + "]";
+	}
+
+	
+	
+	
+}

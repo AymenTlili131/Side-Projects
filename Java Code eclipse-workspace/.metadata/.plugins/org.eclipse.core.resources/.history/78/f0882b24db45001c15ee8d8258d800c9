@@ -1,0 +1,126 @@
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class CV {
+	String Nom;
+	String Prénom ;
+	String Poste ;
+	ArrayList<compétence> L_compétences =new ArrayList<compétence>();
+	ArrayList<projets> L_Projets =new ArrayList<projets>();
+	ArrayList<Stage> L_Stage =new ArrayList<Stage>();
+	ArrayList<loisir> L_loisir =new ArrayList<loisir>();
+	
+	
+	public CV(String nom, String prénom, String poste) {
+		super();
+		Nom = nom;
+		Prénom = prénom;
+		Poste = poste;
+	}
+	
+	void ajouterCompétence(compétence c)
+	{
+		L_compétences.add(c);
+	}
+	void retirerCompétence(compétence c)
+	{
+		L_compétences.remove(c);
+	}
+	
+	void ajouterProjet(projets p)
+	{
+		L_Projets.add(p);
+	}
+	void retirerProjet(projets p)
+	{
+		L_Projets.remove(p);
+	}
+	
+	void ajouterStage(Stage s)
+	{
+		L_Stage.add(s);
+	}
+	void retirerStage(Stage s)
+	{
+		L_Stage.remove(s);
+	}
+	
+	void ajouterloisir(loisir l)
+	{
+		L_loisir.add(l);
+	}
+	void retirerloisir(loisir l)
+	{
+		L_loisir.remove( l);
+	}
+	
+	
+	
+	public String getNom() {
+		return Nom;
+	}
+
+	public void setNom(String nom) {
+		Nom = nom;
+	}
+
+	public String getPrénom() {
+		return Prénom;
+	}
+
+	public void setPrénom(String prénom) {
+		Prénom = prénom;
+	}
+
+	public String getPoste() {
+		return Poste;
+	}
+
+	public void setPoste(String poste) {
+		Poste = poste;
+	}
+
+	CV MettreAj(CV p) throws SQLException 
+	{			
+				PreparedStatement ps=Connexion.getConnection().prepareStatement("insert into CV values(?,?,?)");
+				PreparedStatement ps_l=Connexion.getConnection().prepareStatement("insert into Loisir values(?,?)");	
+				PreparedStatement ps_p=Connexion.getConnection().prepareStatement("insert into Projet values(?)");	
+				PreparedStatement ps=Connexion.getConnection().prepareStatement("insert into CV values(?,?,?)");	
+				try {
+
+				ps.setString(1,p.getNom());
+				ps.setString(2,p.getPrénom());
+				ps.setString(3,p.getPoste());
+				
+				
+				for (loisir l : L_loisir)
+				{ps_l.setString(1,l.getNom());
+				ps_l.setInt(2,((Object) l).TempsParSemaine());}
+				ps_l.executeQuery();  
+				}
+				
+				for (projets Projet : L_Projets)
+				{ps_p.setString(1,Projet.getNom());};
+				ps_p.executeQuery();  
+				}
+				
+				for (Stage s : L_Stage)
+				{ps.setString(1,s.getNom());};
+				ps.executeQuery();  
+				}
+
+String Nom;
+String Entreprise ;
+int duréeMois;
+int order ;
+				
+				catch (Exception e)
+				{e.printStackTrace();	
+				}
+				ps.close();
+				return p;
+	}
+
+}

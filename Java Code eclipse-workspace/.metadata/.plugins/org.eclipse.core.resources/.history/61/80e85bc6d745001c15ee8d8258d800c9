@@ -1,0 +1,5 @@
+import java.util.*;
+public class projets 
+{	String Nom;
+	ArrayList<compétence> L_compétence =new ArrayList<compétence>();
+}

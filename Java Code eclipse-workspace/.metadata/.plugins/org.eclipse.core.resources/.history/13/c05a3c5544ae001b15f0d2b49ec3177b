@@ -1,0 +1,6 @@
+
+public class Racine throws ExceptionValeurNégative
+{float precision;
+
+
+}

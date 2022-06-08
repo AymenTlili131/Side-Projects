@@ -1,0 +1,26 @@
+package TP2_ex2;
+
+public class Compte_ {
+	private int solde =100;
+	public synchronized void retirer(int montant) throws Exception {
+		if (solde>=montant) {
+			solde-=montant;
+		}
+		else
+		{	
+			throw new Exception("SOLDE INSUFFISANT") ;
+			
+		}
+	}
+	public synchronized void déposer(int montant) throws Exception {
+
+			solde+=montant;
+	}
+	public int getSolde() {
+		return solde;
+	}
+	public void setSolde(int solde) {
+		this.solde = solde;
+	}
+
+}

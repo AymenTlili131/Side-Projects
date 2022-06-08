@@ -1,0 +1,11 @@
+
+public class Test2 
+{
+	public static void main(String[] args) 
+	{
+	Complexe z= new Complexe(6,9);
+	Reel x=new Reel(5) ;
+	System.out.println(z.affiche());
+	System.out.println(x.affiche())
+	}
+}

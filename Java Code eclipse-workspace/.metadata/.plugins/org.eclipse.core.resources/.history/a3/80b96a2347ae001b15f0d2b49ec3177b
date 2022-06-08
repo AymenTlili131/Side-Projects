@@ -1,0 +1,33 @@
+
+public class Racine throws ExceptionValeurNégative
+{float precision;float opérande;
+public Racine (float a,float opérande)
+{
+	this.precision=a;
+	if (this.opérande<0)
+	{	new ExceptionValeurNégative e;
+		throw (e);
+			e.getMessage();
+		catch {this.opérande=- opérande;} 
+	}
+}
+public float getPrecision() {
+	return this.precision;
+}
+public void setPrecision(float precision) 
+{this.precision = precision;}
+public float calcul(this.opérande)	
+{ float a=0f,b=this.opérande;float s;
+	s=(a+b)/2;
+	while (abs(b-a)>this.precision)
+	{
+		if (s*s > this.opérande)
+			b=s;
+		else
+			a=s;
+	}
+	s=(a+b)/2;
+	return s;
+}
+
+}

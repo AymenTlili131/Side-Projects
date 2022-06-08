@@ -1,0 +1,9 @@
+package TP2_ex2;
+
+public class ThreadRetirer extends Thread{
+double solde;
+Compte_ x;
+public ThreadRetirer(double solde,Compte_ c) {
+	this.solde = solde;
+}
+}

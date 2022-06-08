@@ -1,0 +1,29 @@
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class CV {
+	ArrayList<compétence> L_compétences =new ArrayList<compétence>();
+	ArrayList<compétence> L_Projets =new ArrayList<compétence>();
+	ArrayList<compétence> L_Stage =new ArrayList<compétence>();
+	ArrayList<compétence> L_loisir =new ArrayList<compétence>();
+	
+	CV MettreAj(CV p) throws SQLException 
+	{			
+				PreparedStatement ps=Connexion.getConnection().prepareStatement("insert into Etudiant values(?,?,?,"+this.F+",?)");				
+				try {
+				ps.setInt(1,p.getCin());
+				ps.setString(2,p.getNom());
+				ps.setString(3,p.getPrénom());
+				ps.setFloat(5,p.getMoyenne());
+				ps.executeQuery();  
+				}
+				catch (Exception e)
+				{e.printStackTrace();	
+				}
+				ps.close();
+				return p;
+	}
+
+}

@@ -1,0 +1,32 @@
+
+public class compétence {
+	String Nom;
+	int MoisExperience;
+	String valeur;
+	public compétence(String nom, int moisExperience, String valeur) {
+		super();
+		Nom = nom;
+		MoisExperience = moisExperience;
+		this.valeur = valeur;
+	}
+	public String getNom() {
+		return Nom;
+	}
+	public void setNom(String nom) {
+		Nom = nom;
+	}
+	public int getMoisExperience() {
+		return MoisExperience;
+	}
+	public void setMoisExperience(int moisExperience) {
+		MoisExperience = moisExperience;
+	}
+	public String getValeur() {
+		return valeur;
+	}
+	public void setValeur(String valeur) {
+		this.valeur = valeur;
+	}
+	
+	
+}

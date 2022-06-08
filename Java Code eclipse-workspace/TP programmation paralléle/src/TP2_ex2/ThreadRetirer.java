@@ -1,0 +1,23 @@
+package TP2_ex2;
+
+public class ThreadRetirer extends Thread{
+double solde;
+Compte_ x;
+public ThreadRetirer(double solde,Compte_ c) {
+	this.solde = solde;
+	this.x=c;
+}
+
+
+public void Retirer(double montant) 
+{	boolean res;
+	try {
+		res=this.x.retirer(montant);
+		if (res==false) {this.wait(2000L);
+		System.out.println(this.x.Consulter());}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+}

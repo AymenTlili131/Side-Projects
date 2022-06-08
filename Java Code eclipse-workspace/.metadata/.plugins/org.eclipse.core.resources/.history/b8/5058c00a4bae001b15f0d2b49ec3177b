@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Essai
+{
+	public static void main(String[] args) 
+		{Scanner sc= new Scanner(System.in); //System.in is a standard input stream.
+		System.out.print(" Enter l'opérande ");
+		float a= sc.nextFloat();
+		Racine( 0.01,a);
+		}
+
+}
